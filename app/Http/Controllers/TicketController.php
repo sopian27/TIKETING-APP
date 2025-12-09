@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Mail\TicketCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
     public function index(Request $request)
     {
-        // Jika tidak ada search, return empty collection
         if (!$request->has('search') || $request->search == '') {
             $tickets = collect();
             return view('progress', compact('tickets'));
         }
 
-        // Jika ada search, baru query database
         $search = $request->search;
         
         $tickets = Ticket::query()
@@ -36,11 +36,11 @@ class TicketController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns|max:255',
+            'email' => 'required|email|max:255',
             'phone' => 'nullable|numeric|digits_between:10,15',
             'subject' => 'required|string|max:255',
             'message' => 'required|string|min:10',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024' // max 1MB (1024 KB)
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024'
         ], [
             'name.required' => 'Nama wajib diisi',
             'email.required' => 'Email wajib diisi',
@@ -74,6 +74,14 @@ class TicketController extends Controller
             $ticket->update(['images' => json_encode($imagePaths)]);
         }
 
-        return redirect()->route('pengaduan')->with('success', 'Ticket berhasil dibuat dengan ID #' . $ticket->id);
+        // Kirim email notifikasi
+        try {
+            Mail::to($ticket->email)->send(new TicketCreated($ticket));
+        } catch (\Exception $e) {
+            // Log error tapi tetap lanjutkan (jangan gagal karena email)
+            \Log::error('Failed to send email: ' . $e->getMessage());
+        }
+
+        return redirect()->route('pengaduan')->with('success', 'Ticket berhasil dibuat dengan ID #' . $ticket->id . '. Email konfirmasi telah dikirim ke ' . $ticket->email);
     }
 }
