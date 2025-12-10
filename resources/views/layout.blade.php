@@ -13,7 +13,9 @@
 
     <!-- NAVBAR GLOBAL -->
     <nav class="flex items-center px-6 py-4 bg-white shadow gap-8">
-        <div class="text-xl font-bold text-blue-600">Logo</div>
+        <div class="text-xl font-bold text-blue-600">
+            <img src="/images/logo.png" alt="Logo" class="h-10">
+        </div>
 
         <div class="flex gap-4 text-lg">
             <a href="/" 

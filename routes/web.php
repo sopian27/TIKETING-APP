@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminLaporanController;
 
 Route::get('/', function () {
     return view('home');
@@ -18,3 +19,10 @@ Route::post('/ticket/store', [TicketController::class, 'store'])->name('ticket.s
 Route::get('/progress', [App\Http\Controllers\TicketController::class, 'index'])->name('progress');
 
 
+
+Route::middleware(['auth'])
+    ->prefix('admin-tools')
+    ->group(function () {
+        Route::get('/laporan/download', [AdminLaporanController::class, 'download'])
+            ->name('admin.laporan.download');
+    });
