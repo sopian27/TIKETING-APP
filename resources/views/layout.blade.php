@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ $title ?? "Ticketing Publik" }}</title>
+    <title>{{ $title ?? "Laporin" }}</title>
 
     <!-- TAILWIND CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/background.css">
      
 </head>
-<body class="bg-gray-50">
+<body>
 
     <!-- NAVBAR GLOBAL -->
     <nav class="flex items-center px-6 py-4 bg-white shadow gap-8">
-        <div class="text-xl font-bold text-blue-600">
-            <img src="/images/logo.png" alt="Logo" class="h-10">
+        <div class="text-xl font-bold">
+            <img src="/images/logo2.png" alt="Logo" class="h-16 w-auto">
         </div>
 
         <div class="flex gap-4 text-lg">
