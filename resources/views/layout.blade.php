@@ -31,13 +31,13 @@
 
             <a href="/progress"
             class="px-4 py-2 rounded-lg transition {{ request()->is('progress') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
-            Progress
+            Ticket
             </a>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <div class="p-0">
+    <div class="p-0 w-full">
         @yield('content')
     </div>
 
