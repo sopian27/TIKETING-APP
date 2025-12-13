@@ -51,11 +51,13 @@ class Ticket extends Model
                 $ticket->ticket_uuid = (string) Str::uuid();
             }
 
-             // Hanya kirim email jika status berubah
-            if ($ticket->isDirty('status')) {
-                $ticket->sendStatusEmail($ticket->status);
-            }
         });
+
+        // Email awal
+        static::created(function ($ticket) {
+            $ticket->sendStatusEmail($ticket->status);
+        });
+        
     }
 
     /**

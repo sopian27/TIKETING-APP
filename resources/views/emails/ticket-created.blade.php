@@ -77,7 +77,7 @@
             
             <div class="info-row">
                 <span class="info-label">ID Ticket:</span>
-                <strong>#{{ $ticket->id }}</strong>
+                <strong>#{{ $ticket->ticket_uuid }}</strong>
             </div>
             
             <div class="info-row">
@@ -96,7 +96,7 @@
             </div>
             
             <div class="info-row">
-                <span class="info-label">Tanggal:</span>
+                <span class="info-label">Tanggal Pengaduan:</span>
                 {{ $ticket->created_at->format('d F Y, H:i') }} WIB
             </div>
             
@@ -112,7 +112,7 @@
         <ul>
             <li>Tim kami akan meninjau pengaduan Anda dalam 1-2 hari kerja</li>
             <li>Anda akan menerima email update jika ada perkembangan</li>
-            <li>Simpan ID Ticket <strong>#{{ $ticket->id }}</strong> untuk referensi</li>
+            <li>Simpan ID Ticket <strong>#{{ $ticket->ticket_uuid }}</strong> untuk referensi</li>
         </ul>
         
         <p>Anda dapat mengecek status ticket Anda kapan saja melalui halaman Progress di website kami.</p>
@@ -120,7 +120,7 @@
         <p>Jika ada pertanyaan, jangan ragu untuk menghubungi kami.</p>
         
         <p>Terima kasih,<br>
-        <strong>Tim Support</strong></p>
+        <strong>Tim Support Laporin</strong></p>
     </div>
     
     <div class="footer">

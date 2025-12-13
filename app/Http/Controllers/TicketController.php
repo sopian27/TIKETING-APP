@@ -85,8 +85,8 @@ class TicketController extends Controller
         return redirect()->route('pengaduan')->with(
             'success',
             'Pengaduan Anda berhasil dikirim. ' .
-            'Tiket ID: #' . $ticket->ticket_uuid . '. ' .
-            'Silakan gunakan Tiket ID ini untuk mengecek perkembangan pengaduan melalui menu Progress.'
+            'ID Ticket: #' . $ticket->ticket_uuid . '. ' .
+            'Silakan gunakan ID Ticket ini untuk mengecek perkembangan pengaduan melalui menu Progress.'
         );
 
     }
