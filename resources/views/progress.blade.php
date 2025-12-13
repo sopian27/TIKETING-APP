@@ -28,11 +28,7 @@
 
     @if(request('search'))
     <!-- Results Info -->
-    @if($tickets->count() > 0)
-    <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-4">
-        Ditemukan {{ $tickets->count() }} ticket dengan kata kunci "<strong>{{ request('search') }}</strong>"
-    </div>
-    @else
+    @if($tickets->count() <= 0)
     <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-lg mb-4">
         Tidak ditemukan ticket dengan kata kunci "<strong>{{ request('search') }}</strong>"
     </div>
@@ -43,10 +39,11 @@
         <table class="w-full">
             <thead class="bg-blue-500 text-white">
                 <tr>
-                    <th class="px-6 py-4 text-left font-semibold">Ticket ID</th>
+                    <th class="px-6 py-4 text-left font-semibold">ID Ticket</th>
                     <th class="px-6 py-4 text-left font-semibold">Nama</th>
                     <th class="px-6 py-4 text-left font-semibold">Email</th>
                     <th class="px-6 py-4 text-left font-semibold">Subjek</th>
+                    <th class="px-6 py-4 text-left font-semibold">Pengaduan</th>
                     <th class="px-6 py-4 text-left font-semibold">Status</th>
                     <th class="px-6 py-4 text-left font-semibold">Tanggal</th>
                 </tr>
@@ -55,10 +52,11 @@
             <tbody class="divide-y divide-gray-200">
                 @forelse($tickets as $t)
                 <tr class="hover:bg-gray-50 transition">
-                    <td class="px-6 py-4 font-mono text-blue-600">#{{ $t->id }}</td>
+                    <td class="px-6 py-4 font-mono text-blue-600">{{ $t->ticket_uuid }}</td>
                     <td class="px-6 py-4">{{ $t->name }}</td>
                     <td class="px-6 py-4 text-gray-600">{{ $t->email }}</td>
                     <td class="px-6 py-4">{{ Str::limit($t->subject, 30) }}</td>
+                    <td class="px-6 py-4">{{ Str::limit($t->message, 30) }}</td>
                     <td class="px-6 py-4">
                         @if($t->status == 'pending')
                         <span class="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-800">

@@ -112,7 +112,7 @@
         <ul>
             <li>Tim kami akan meninjau pengaduan Anda dalam 1-2 hari kerja</li>
             <li>Anda akan menerima email update jika ada perkembangan</li>
-            <li>Simpan ID Ticket <strong>#{{ $ticket->ticket_uuid }}</strong> untuk referensi</li>
+            <li>Simpan ID Ticket <strong>{{ $ticket->ticket_uuid }}</strong> untuk referensi</li>
         </ul>
         
         <p>Anda dapat mengecek status ticket Anda kapan saja melalui halaman Progress di website kami.</p>

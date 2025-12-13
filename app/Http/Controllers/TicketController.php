@@ -20,7 +20,7 @@ class TicketController extends Controller
         
         $tickets = Ticket::query()
             ->where(function($q) use ($search) {
-                $q->where('id', 'LIKE', "%{$search}%")
+                $q->where('ticket_uuid', 'LIKE', "%{$search}%")
                   ->orWhere('name', 'LIKE', "%{$search}%")
                   ->orWhere('email', 'LIKE', "%{$search}%")
                   ->orWhere('phone', 'LIKE', "%{$search}%")
