@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class Ticket extends Model
 {
@@ -17,6 +18,7 @@ class Ticket extends Model
         'subject',
         'message',
         'images',
+        'ticket_uuid',
         'status',
         'admin_notes',
     ];
@@ -41,6 +43,12 @@ class Ticket extends Model
             // Hanya kirim email jika status berubah
             if ($ticket->isDirty('status')) {
                 $ticket->sendStatusEmail($ticket->status);
+            }
+        });
+
+        static::creating(function ($ticket) {
+            if (empty($ticket->ticket_uuid)) {
+                $ticket->ticket_uuid = (string) Str::uuid();
             }
         });
     }

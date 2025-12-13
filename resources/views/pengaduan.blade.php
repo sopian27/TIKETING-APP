@@ -82,7 +82,7 @@
 
             <div>
                 <label class="font-semibold text-gray-700 block mb-2">Upload Photo</label>
-                <p class="text-sm text-gray-600 mb-3">Maksimal 1 MB per gambar. Format: JPG, PNG, GIF</p>
+                <p class="text-sm text-gray-600 mb-3">Maksimal 1 MB per File. Format: JPG, PNG, GIF</p>
                 <input type="file" name="images[]" multiple id="imageInput" accept="image/*" class="hidden" require>
 
                 <div id="imagePreview" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-4"></div>
@@ -92,7 +92,7 @@
                     <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                     </svg>
-                    <span class="text-gray-500 mt-3 font-medium">Klik untuk upload gambar</span>
+                    <span class="text-gray-500 mt-3 font-medium">Klik untuk upload Photo</span>
                 </button>
                 @error('images.*')
                 <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
