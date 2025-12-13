@@ -1,0 +1,4 @@
+/* Hilangkan checkbox Remember Me */
+.fi-auth-login-form .fi-fo-checkbox-field {
+    display: none !important;
+}
