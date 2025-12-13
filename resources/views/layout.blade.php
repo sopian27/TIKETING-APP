@@ -31,7 +31,7 @@
 
             <a href="/progress"
             class="px-4 py-2 rounded-lg transition {{ request()->is('progress') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
-            Ticket
+            Progress
             </a>
         </div>
     </nav>

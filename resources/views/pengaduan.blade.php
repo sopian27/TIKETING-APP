@@ -4,8 +4,15 @@
 
 <div class="flex flex-col items-center justify-center min-h-screen py-8">
     @if(session('success'))
-    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-5 max-w-lg w-full">
-        {{ session('success') }}
+    <div id="success-alert"
+        class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-5 max-w-lg w-full flex items-start justify-between gap-4">
+
+        <span>{{ session('success') }}</span>
+
+        <button onclick="document.getElementById('success-alert').remove()"
+            class="text-green-700 font-bold text-xl leading-none hover:text-green-900">
+            &times;
+        </button>
     </div>
     @endif
 
@@ -121,7 +128,7 @@
                 if (file.size > 1048576) {
                     alert(
                         `File "${file.name}" terlalu besar! Maksimal 1 MB. Ukuran file: ${(file.size / 1048576).toFixed(2)} MB`
-                        );
+                    );
                     hasError = true;
                     return;
                 }

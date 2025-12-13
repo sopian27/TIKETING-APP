@@ -82,6 +82,12 @@ class TicketController extends Controller
             \Log::error('Failed to send email: ' . $e->getMessage());
         }
 
-        return redirect()->route('pengaduan')->with('success', 'Ticket berhasil dibuat dengan ID #' . $ticket->id . '. Email konfirmasi telah dikirim ke ' . $ticket->email);
+        return redirect()->route('pengaduan')->with(
+            'success',
+            'Pengaduan Anda berhasil dikirim. ' .
+            'Tiket ID: #' . $ticket->ticket_uuid . '. ' .
+            'Silakan gunakan Tiket ID ini untuk mengecek perkembangan pengaduan melalui menu Progress.'
+        );
+
     }
 }
