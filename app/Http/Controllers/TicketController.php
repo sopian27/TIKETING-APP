@@ -71,7 +71,7 @@ class TicketController extends Controller
                 $path = $image->store('tickets', 'public');
                 $imagePaths[] = $path;
             }
-            $ticket->update(['images' => json_encode($imagePaths)]);
+            $ticket->update(['images' => $imagePaths]);
         }
 
         // Kirim email notifikasi
@@ -85,8 +85,8 @@ class TicketController extends Controller
         return redirect()->route('pengaduan')->with(
             'success',
             'Pengaduan Anda berhasil dikirim. ' .
-            'ID Ticket: #' . $ticket->ticket_uuid . '. ' .
-            'Silakan gunakan ID Ticket ini untuk mengecek perkembangan pengaduan melalui menu Progress.'
+            'Ticket ID: ' . $ticket->ticket_uuid . '. ' .
+            'Silakan gunakan Ticket ID ini untuk mengecek perkembangan pengaduan melalui menu Progress.'
         );
 
     }
