@@ -14,29 +14,60 @@
 
 <body>
 
-    <!-- NAVBAR GLOBAL -->
-    <nav class="flex items-center px-6 py-4 bg-white shadow gap-8">
+    <nav class="flex items-center px-6 py-4 bg-white shadow gap-10">
+        <!-- LOGO -->
         <div class="text-xl font-bold">
             <img src="/images/logo2.png" alt="Logo" class="h-16 w-auto">
         </div>
 
-        <div class="flex gap-4 text-lg">
-            <a href="/"
-                class="px-4 py-2 rounded-lg transition {{ request()->is('/') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
-                Beranda
+        <!-- MENU -->
+        <div class="flex gap-6 text-lg">
+
+            <!-- Beranda -->
+            <a href="/" class="flex items-center gap-2 px-4 py-2 rounded-lg transition
+           {{ request()->is('/') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
+
+                <!-- Home Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 9.75L12 4l9 5.75V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1V9.75z" />
+                </svg>
+
+                <span>Beranda</span>
             </a>
 
-            <a href="/pengaduan"
-                class="px-4 py-2 rounded-lg transition {{ request()->is('pengaduan') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
-                Pengaduan
+            <!-- Pengaduan -->
+            <a href="/pengaduan" class="flex items-center gap-2 px-4 py-2 rounded-lg transition
+           {{ request()->is('pengaduan') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
+
+                <!-- Report Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m-6 4h6M7 8h10M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                </svg>
+
+                <span>Pengaduan</span>
             </a>
 
-            <a href="/progress"
-                class="px-4 py-2 rounded-lg transition {{ request()->is('progress') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
-                Progress
+            <!-- Progress -->
+            <a href="/progress" class="flex items-center gap-2 px-4 py-2 rounded-lg transition
+           {{ request()->is('progress') ? 'text-white bg-blue-500' : 'text-gray-700 hover:bg-blue-100' }}">
+
+                <!-- Chart Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 3v18m4-14v14m4-10v10M7 7v14M3 11v10" />
+                </svg>
+
+                <span>Progress</span>
             </a>
+
         </div>
     </nav>
+
 
     <!-- CONTENT -->
     <div class="p-0 w-full">
