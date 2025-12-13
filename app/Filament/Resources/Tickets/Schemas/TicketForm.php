@@ -15,19 +15,21 @@ class TicketForm
         return $schema
             ->components([
                 TextInput::make('id')
+                    ->label('ID')
+                    ->disabled(),
+                TextInput::make('ticket_uuid')
                     ->label('Ticket ID')
                     ->disabled(),
                 TextInput::make('name')
                     ->required(),
                 TextInput::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->email()
                     ->required(),
-                TextInput::make('phone')
-                    ->tel(),
                 TextInput::make('subject')
                     ->required(),
                 Textarea::make('message')
+                    ->label('Pengaduan')
                     ->required()
                     ->columnSpanFull(),
                 FileUpload::make('images')
@@ -60,7 +62,7 @@ class TicketForm
                         }
                     ])
                     ->required()
-                    ->native(false),   // dropdown filament
+                    ->native(false), // dropdown filament
                 Textarea::make('admin_notes')
                     ->columnSpanFull(),
             ]);

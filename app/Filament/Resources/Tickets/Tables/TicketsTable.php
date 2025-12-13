@@ -21,9 +21,10 @@ class TicketsTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->searchable(),
-                TextColumn::make('phone')
+                TextColumn::make('message')
+                    ->label('Pengaduan')
                     ->searchable(),
                 TextColumn::make('subject')
                     ->searchable(),
