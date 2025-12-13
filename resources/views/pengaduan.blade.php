@@ -27,11 +27,12 @@
     @endif
 
     <div class="w-full max-w-5xl mx-auto py-8 px-4">
-        <h2 class="text-3xl font-bold mb-6 text-gray-900">Formulir Pengaduan</h2>
-
         <form action="{{ route('ticket.store') }}" method="POST" enctype="multipart/form-data"
             class="space-y-6 max-w-4xl w-full bg-white p-8 shadow-lg rounded-lg" id="ticketForm">
             @csrf
+
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 text-center">Form Pengaduan</h2>
+            <hr />
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

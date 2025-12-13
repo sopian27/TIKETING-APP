@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="w-full max-w-5xl mx-auto py-8 px-4 mt-6">
-    <h2 class="text-3xl font-bold mb-6 text-gray-900">Temukan Pengaduan</h2>
 
     <!-- Search Form -->
     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
