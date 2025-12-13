@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="w-full max-w-5xl mx-auto py-8 px-4 mt-6">
+<div class="w-full max-w-7xl mx-auto py-8 px-4 mt-6">
 
     <!-- Search Form -->
     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -34,7 +34,7 @@
     @endif
 
     <!-- Table with Data -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden min-h-[50vh] flex flex-col justify-start">
         <table class="w-full">
             <thead class="bg-blue-500 text-white">
                 <tr>
@@ -104,7 +104,7 @@
 
     @else
     <!-- Empty State - Before Search -->
-    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden min-h-[50vh] flex flex-col justify-start">
         <table class="w-full">
             <thead class="bg-blue-500 text-white">
                 <tr>
@@ -112,6 +112,7 @@
                     <th class="px-6 py-4 text-left font-semibold">Nama</th>
                     <th class="px-6 py-4 text-left font-semibold">Email</th>
                     <th class="px-6 py-4 text-left font-semibold">Subjek</th>
+                    <th class="px-6 py-4 text-left font-semibold">Pengaduan</th>
                     <th class="px-6 py-4 text-left font-semibold">Status</th>
                     <th class="px-6 py-4 text-left font-semibold">Tanggal</th>
                 </tr>
