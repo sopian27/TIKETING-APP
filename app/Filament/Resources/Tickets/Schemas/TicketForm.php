@@ -7,6 +7,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 
 class TicketForm
 {
@@ -26,8 +27,37 @@ class TicketForm
                     ->label('Email')
                     ->email()
                     ->required(),
+                Toggle::make('is_spam')
+                    ->label('Non Spam?')
+                    ->onColor('success')
+                    ->offColor('danger')
+                    ->onIcon('heroicon-o-check')
+                    ->offIcon('heroicon-o-x-mark')
+                    ->default(1)
+                    ->helperText('ON = Non Spam, OFF = Spam'),
                 TextInput::make('subject')
                     ->required(),
+                TextInput::make('spam_confidence')
+                    ->label('Spam Confidence')
+                    ->disabled(),
+                TextInput::make('image_relevant')
+                    ->label('Image Relevant')
+                    ->disabled(),
+                TextInput::make('relevance_score')
+                    ->label('Relevance Score')
+                    ->disabled(),
+                Textarea::make('ml_response')
+                    ->label('ML Response (JSON)')
+                    ->formatStateUsing(function ($state) {
+                        if (empty($state)) {
+                            return null;
+                        }
+
+                        return json_encode($state, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+                    })
+                    ->rows(15)
+                    ->disabled()
+                    ->columnSpanFull(),
                 Textarea::make('message')
                     ->label('Pengaduan')
                     ->required()
