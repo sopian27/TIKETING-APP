@@ -65,7 +65,7 @@ class Ticket extends Model
         // Email awal
         static::created(function ($ticket) {
             $ticket->sendStatusEmail($ticket->status);
-            ScanTicketML::dispatch($ticket->id);
+            ScanTicketML::dispatch($ticket->id)->delay(now()->addSeconds(3));
         });
         
     }

@@ -35,11 +35,16 @@ class ScanTicketML implements ShouldQueue
 
             if (is_array($ticket->images)) {
                 foreach ($ticket->images as $path) {
-                    $http = $http->attach(
-                        'image',
-                        fopen(storage_path('app/public/' . $path), 'r'),
-                        basename($path)
-                    );
+                    $fullPath = storage_path('app/public/' . $path);
+
+                    if (file_exists($fullPath)) {
+                        $http = $http->attach(
+                            'image[]',
+                            file_get_contents($fullPath),
+                            basename($path)
+                        );
+                    }
+
                 }
             }
 
@@ -54,14 +59,29 @@ class ScanTicketML implements ShouldQueue
             $data = $response->json();
             Log::info('ML Response', $data);
 
+            $imageRelevant = false;
+            $maxRelevance = null;
+
+            foreach ($data['images'] ?? [] as $img) {
+
+
+                if (isset($img['relevance_score'])) {
+                    $maxRelevance = max($maxRelevance ?? 0, $img['relevance_score']);
+                }
+
+                if (isset($img['image_relevant'])) {
+                    $imageRelevant = $img['relevance_score'];
+                }
+            }
+
             $ticket->update([
-                'is_spam'         => $data['text']['is_spam'] ?? 0,
-                'prioritas'       => $data['text']['prioritas'] ?? 'Normal',
-                'spam_confidence' => $data['text']['spam_confidence'] ?? null,
-                'image_relevant'  => $data['image_relevant'] ?? null,
-                'relevance_score' => $data['relevance_score'] ?? null,
+                'is_spam'         => $data['text']['is_spam'],
+                'prioritas'       => $data['text']['prioritas'],
+                'spam_confidence' => $data['text']['spam_confidence'],
+                'image_relevant'  => $imageRelevant,
+                'relevance_score' => $maxRelevance,
                 'ml_response'     => $data,
-                'status'         => 'Processing',
+                'status'         => 'Processing'
             ]);
 
         } catch (\Throwable $e) {
