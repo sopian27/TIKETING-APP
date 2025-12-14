@@ -81,7 +81,7 @@ class ScanTicketML implements ShouldQueue
                 'image_relevant'  => $imageRelevant,
                 'relevance_score' => $maxRelevance,
                 'ml_response'     => $data,
-                'status'         => 'Processing'
+                'status'         => 'Waiting',
             ]);
 
         } catch (\Throwable $e) {

@@ -31,8 +31,11 @@ class TicketsTable
                 BadgeColumn::make('status')
                     ->colors([
                         'warning' => 'pending',
-                        'primary' => 'progress',
+                        'primary' => 'processing',
+                        'info'    => 'waiting',
                         'success' => 'finish',
+                        'danger'  => 'drop',
+
                     ]),
                 TextColumn::make('created_at')
                     ->dateTime()

@@ -75,8 +75,10 @@ class TicketForm
                     ->label('Status Ticket')
                     ->options([
                         'pending' => 'Pending',
-                        'progress' => 'Processing',
+                        'waiting' => 'Waiting',
+                        'processing' => 'Processing',
                         'finish' => 'Finish',
+                        'drop' => 'Drop',
                     ])
                     ->rules([
                         function ($attribute, $value, $fail) {
