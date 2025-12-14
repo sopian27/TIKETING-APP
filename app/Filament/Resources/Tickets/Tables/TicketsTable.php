@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Filters\SelectFilter;
 
 class TicketsTable
 {
@@ -47,7 +48,16 @@ class TicketsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')
+                ->multiple()
+                ->options([
+                    'processing' => 'Processing',
+                    'waiting'    => 'Waiting',
+                    'finish'     => 'Finish',
+                    'pending'    => 'Pending',
+                    'drop'       => 'Drop'
+                ])
+                ->default('waiting'), // opsional
             ])
             ->recordActions([
                 EditAction::make(),
