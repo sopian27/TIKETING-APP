@@ -70,19 +70,23 @@ class ScanTicketML implements ShouldQueue
                 }
 
                 if (isset($img['image_relevant'])) {
-                    $imageRelevant = $img['relevance_score'];
+                    $imageRelevant = $img['image_relevant'];
                 }
             }
 
+            $isSpam = $data['text']['is_spam'] ?? 0;
+            $status = $isSpam == 1 ? 'drop' : 'waiting';
+
             $ticket->update([
-                'is_spam'         => $data['text']['is_spam'],
-                'prioritas'       => $data['text']['prioritas'],
-                'spam_confidence' => $data['text']['spam_confidence'],
+                'is_spam'         => $isSpam,
+                'prioritas'       => $data['text']['prioritas'] ?? null,
+                'spam_confidence' => $data['text']['spam_confidence'] ?? null,
                 'image_relevant'  => $imageRelevant,
                 'relevance_score' => $maxRelevance,
                 'ml_response'     => $data,
-                'status'         => 'Waiting',
+                'status'          => $status
             ]);
+
 
         } catch (\Throwable $e) {
             Log::error('ML Job error: ' . $e->getMessage());
