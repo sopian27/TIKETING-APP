@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Jobs\ScanTicketML;
 
 class Ticket extends Model
 {
@@ -21,12 +22,20 @@ class Ticket extends Model
         'ticket_uuid',
         'status',
         'admin_notes',
+        'is_spam',
+        'prioritas',
+        'spam_confidence',
+        'image_relevant',
+        'relevance_score',
+        'ml_response'
     ];
 
     protected $casts = [
         'images' => 'array',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'image_relevant' => 'boolean',
+        'ml_response' => 'array'
     ];
 
     protected $attributes = [
@@ -56,6 +65,7 @@ class Ticket extends Model
         // Email awal
         static::created(function ($ticket) {
             $ticket->sendStatusEmail($ticket->status);
+            ScanTicketML::dispatch($ticket->id);
         });
         
     }

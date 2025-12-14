@@ -45,7 +45,7 @@ class TicketForm
                     ->label('Status Ticket')
                     ->options([
                         'pending' => 'Pending',
-                        'progress' => 'Progress',
+                        'progress' => 'Processing',
                         'finish' => 'Finish',
                     ])
                     ->rules([
